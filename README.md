@@ -1,2 +1,2 @@
 # live-chat
-An live chat application using PHP as backend and AJAX  for live updates.
+An live chat application using PHP as backend and Fetch API for live updates.
