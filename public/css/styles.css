@@ -41,3 +41,13 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+.error-message {
+    color: #f44336; /* Red color for error */
+    background-color: #fdd;
+    border: 1px solid #f44336;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+}

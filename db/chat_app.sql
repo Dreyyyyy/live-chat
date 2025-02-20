@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 19, 2025 at 04:17 AM
+-- Generation Time: Feb 20, 2025 at 05:08 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,34 +32,16 @@ CREATE TABLE `messages` (
   `sender_id` int(11) NOT NULL,
   `receiver_id` int(11) NOT NULL,
   `message` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `archived` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `messages`
 --
 
-INSERT INTO `messages` (`id`, `sender_id`, `receiver_id`, `message`, `created_at`) VALUES
-(3, 3, 3, 'test', '2025-02-19 02:55:29'),
-(4, 3, 5, 'ase', '2025-02-19 02:55:36'),
-(5, 3, 3, 'test', '2025-02-19 02:58:49'),
-(6, 3, 3, 'aaa', '2025-02-19 02:58:51'),
-(7, 3, 3, 'sadasd', '2025-02-19 02:58:52'),
-(8, 3, 5, '123213', '2025-02-19 03:00:48'),
-(9, 3, 5, '21312312', '2025-02-19 03:00:50'),
-(10, 5, 3, '21312321', '2025-02-19 03:01:21'),
-(11, 5, 3, '2131231', '2025-02-19 03:01:25'),
-(12, 5, 5, '12312312', '2025-02-19 03:01:28'),
-(13, 5, 5, '123123', '2025-02-19 03:01:31'),
-(14, 5, 3, 'asdsadas', '2025-02-19 03:07:08'),
-(15, 5, 3, 'asdasdas', '2025-02-19 03:07:12'),
-(16, 3, 3, 'ewewqqwe', '2025-02-19 03:13:07'),
-(17, 3, 3, 'sdasdas', '2025-02-19 03:13:08'),
-(18, 5, 3, 'asdsadsa', '2025-02-19 03:13:43'),
-(19, 5, 3, 'sadasdasda', '2025-02-19 03:13:44'),
-(20, 5, 3, 'asdasdasda', '2025-02-19 03:13:49'),
-(21, 3, 3, 'sadsadas', '2025-02-19 03:16:01'),
-(22, 3, 3, 'sadasdas', '2025-02-19 03:16:02');
+INSERT INTO `messages` (`id`, `sender_id`, `receiver_id`, `message`, `created_at`, `archived`) VALUES
+(28, 3, 3, 'asdsadsad', '2025-02-20 16:02:06', 1);
 
 -- --------------------------------------------------------
 
@@ -82,8 +64,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `profile_picture`, `created_at`, `last_active`) VALUES
-(3, 'Test', 'test@mail.com', '$2y$10$Hn64rWDQ8rkSSrlz/p52UuSZHQmFjdpBv5sQ90MkyoknhaduUJUWK', '-mpx1ts.jpg', '2025-02-19 00:39:06', '2025-02-18 23:16:04'),
-(5, 'Test2', 'test2@mail.com', '$2y$10$kCixPBTF8tMt83Cpzu99KevrvLCVYQEEJpTNsoFDZEOX9M0mvHvwq', 'HTNNBIFp_400x400.jpg', '2025-02-19 00:51:10', '2025-02-18 23:14:05');
+(3, 'Test', 'test@mail.com', '$2y$10$Hn64rWDQ8rkSSrlz/p52UuSZHQmFjdpBv5sQ90MkyoknhaduUJUWK', '-mpx1ts.jpg', '2025-02-19 00:39:06', '2025-02-20 12:06:44'),
+(5, 'Test2', 'test2@mail.com', '$2y$10$kCixPBTF8tMt83Cpzu99KevrvLCVYQEEJpTNsoFDZEOX9M0mvHvwq', 'HTNNBIFp_400x400.jpg', '2025-02-19 00:51:10', '2025-02-18 23:49:53'),
+(6, 'Test3', 'test3@mail.com', '$2y$10$NIEE3MoJ3Iu9EQr0JrsN/.kxuYiM6AQgcNaYYXTFWhS3TEXpT3HT2', 'letterboxed_image.jpg', '2025-02-19 03:44:35', '2025-02-18 23:46:19'),
+(8, 'Test4', 'test4@mail.com', '$2y$10$2GRbyHfC25yJ46y1UqGbO.2o.zSFnsAeuCl2yxJp/OzmnwPKNMSwe', 'image.png', '2025-02-19 03:48:50', '2025-02-18 23:48:54');
 
 --
 -- Indexes for dumped tables
@@ -112,13 +96,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

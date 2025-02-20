@@ -57,4 +57,68 @@ class MessageController
         header('Content-Type: application/json');
         echo json_encode($messages);
     }
+
+    public function archiveMessage()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $messageId = $data['message_id'] ?? null;
+
+            if ($messageId === null) {
+                echo json_encode(['status' => 'error', 'message' => 'Missing message ID']);
+                return;
+            }
+
+            $messageModel = new Message();
+            $messageModel->archiveMessage($messageId);
+
+            echo json_encode(['status' => 'success']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
+        }
+    }
+
+    public function deleteMessage()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $messageId = $data['message_id'] ?? null;
+
+            if ($messageId === null) {
+                echo json_encode(['status' => 'error', 'message' => 'Missing message ID']);
+                return;
+            }
+
+            $messageModel = new Message();
+            $messageModel->deleteMessage($messageId);
+
+            echo json_encode(['status' => 'success']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
+        }
+    }
+
+    public function archiveAllMessages()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $messageModel = new Message();
+            $messageModel->archiveAllMessages();
+
+            echo json_encode(['status' => 'success']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
+        }
+    }
+
+    public function deleteAllMessages()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $messageModel = new Message();
+            $messageModel->deleteAllMessages();
+
+            echo json_encode(['status' => 'success']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
+        }
+    }
 }

@@ -20,6 +20,12 @@
     <!-- Messages will be loaded here -->
 </div>
 
+<!-- Add buttons for archiving and deleting all messages -->
+<div class="button-container">
+    <button onclick="archiveAllMessages()">Archive All</button>
+    <button onclick="deleteAllMessages()">Delete All</button>
+</div>
+
 <form id="chat-form">
     <select name="receiver_id">
         <?php foreach ($users as $user): ?>

@@ -8,6 +8,8 @@ class AuthController
 {
     public function login()
     {
+        $errorMessage = '';
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $_POST['email'];
             $password = $_POST['password'];
@@ -25,12 +27,11 @@ class AuthController
                 header('Location: /live-chat/public/index.php/chat');
                 exit();
             } else {
-                echo "Invalid email or password.";
+                $errorMessage = "Invalid email or password.";
             }
-        } else {
-            // Load the login view for GET requests
-            include __DIR__ . '/../Views/auth/login.php';
         }
+
+        include __DIR__ . '/../Views/auth/login.php';
     }
 
     public function logout()

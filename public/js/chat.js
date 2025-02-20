@@ -29,3 +29,37 @@ function fetchMessages() {
 }
 
 setInterval(fetchMessages, 1000); // Fetch messages every second
+
+function archiveAllMessages() {
+    fetch('/live-chat/public/index.php/chat/archive-all', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            fetchMessages();
+        } else {
+            console.error('Error archiving messages:', data.message);
+        }
+    });
+}
+
+function deleteAllMessages() {
+    fetch('/live-chat/public/index.php/chat/delete-all', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            fetchMessages();
+        } else {
+            console.error('Error deleting messages:', data.message);
+        }
+    });
+}

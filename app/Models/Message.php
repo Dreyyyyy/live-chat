@@ -42,4 +42,30 @@ class Message
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function archiveMessage($messageId)
+    {
+        $stmt = $this->db->prepare("UPDATE messages SET archived = 1 WHERE id = :id");
+        $stmt->bindParam(':id', $messageId);
+        return $stmt->execute();
+    }
+
+    public function deleteMessage($messageId)
+    {
+        $stmt = $this->db->prepare("DELETE FROM messages WHERE id = :id");
+        $stmt->bindParam(':id', $messageId);
+        return $stmt->execute();
+    }
+
+    public function archiveAllMessages()
+    {
+        $stmt = $this->db->prepare("UPDATE messages SET archived = 1");
+        return $stmt->execute();
+    }
+
+    public function deleteAllMessages()
+    {
+        $stmt = $this->db->prepare("DELETE FROM messages");
+        return $stmt->execute();
+    }
 }

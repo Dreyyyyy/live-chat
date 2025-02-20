@@ -29,6 +29,8 @@ $router->post('/update-last-active', [new UserController(), 'updateLastActive'])
 $router->get('/fetch-users', [new UserController(), 'fetchUsers']);
 $router->get('/fetch-messages', [new MessageController(), 'fetchMessages']);
 $router->get('/test-json', [new TestController(), 'testJson']);
+$router->post('/chat/archive-all', [new MessageController(), 'archiveAllMessages']);
+$router->post('/chat/delete-all', [new MessageController(), 'deleteAllMessages']);
 
 // Dispatch the current request
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
